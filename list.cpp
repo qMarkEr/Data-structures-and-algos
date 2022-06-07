@@ -12,11 +12,12 @@ class List{
         Node(int val, Node* next = NULL){
             value = val, this->next = next;
         }
-
     };
+    int len = 0;
     Node* head;
     void Delete(Node*& node);
     public:
+    int Size();
     void print();
     List();
     ~List();
@@ -25,7 +26,9 @@ class List{
 
     
 };
-
+int List::Size(){
+    return len;
+}
 void List::print(){
     cout << "[ ";
     Node* current = head;
@@ -49,11 +52,13 @@ List::~List(){
 void List::Delete(Node*& node){
     Node* temp = node;
     node = temp->next;
+    len--;
     delete temp;
 }
 void List::Add(int val, int index){
     if(index == 0){
         this->head = new Node(val, head);
+        len++;
         return;
     }
     Node* current = head;
@@ -64,6 +69,7 @@ void List::Add(int val, int index){
         current = current->next;
     }
     current->next = new Node(val, current->next);
+    len++;
 
 };
 
@@ -97,6 +103,7 @@ int main(){
     list.Add(54, 3);
     list.Add(11, 4);
     list.Add(8, 5);
+    cout << list.Size();
     list.Task();
     list.print();
     list.~List();

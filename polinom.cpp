@@ -10,11 +10,17 @@ class Polynom{
     void Print();
     Polynom(int* arr, int n);
     Polynom operator*(Polynom x);
-    
+    ~Polynom();
 
 
 
 };
+Polynom::~Polynom(){
+        delete[] this->array;
+    
+    
+}
+
 
 void Polynom::Print(){
     int i = 0;
@@ -78,5 +84,11 @@ int main(){
     Polynom p1(array2, 4);
     
     Polynom x = p*p1;
+    p.Print();
+    cout << endl;
+    p1.Print();
+    cout << endl;
     x.Print();
+    x.~Polynom(); 
+    
 }
